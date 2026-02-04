@@ -13,8 +13,33 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Marie's Sutil Detalle | San Valentín 2024",
-  description: "Cajas con los mejores chocolates para regalar en San Valentín. El detalle más dulce para esa persona especial.",
+  metadataBase: new URL("https://mariesutil.com"),
+  title: {
+    default: "Marie's Sutil Detalle | Chocolates y Regalos de San Valentín",
+    template: "%s | Marie's Sutil Detalle"
+  },
+  description: "Cajas con los mejores chocolates para regalar en San Valentín. El detalle más dulce para esa persona especial en Costa Rica.",
+  keywords: ["chocolates", "San Valentín", "regalos", "Costa Rica", "detalles personalizados", "caja de regalo", "maries sutil detalle"],
+  openGraph: {
+    title: "Marie's Sutil Detalle | Chocolates y Regalos de San Valentín",
+    description: "Cajas con los mejores chocolates para regalar en San Valentín.",
+    url: "https://mariesutil.com",
+    siteName: "Marie's Sutil Detalle",
+    locale: "es_CR",
+    type: "website",
+    images: [{ url: "/logo.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/logo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://mariesutil.com",
+  },
 };
 
 export default function RootLayout({
