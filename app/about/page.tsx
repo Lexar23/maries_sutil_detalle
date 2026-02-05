@@ -1,5 +1,6 @@
 "use client";
 import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 import FloatingHearts from "@/app/components/FloatingHearts";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
 import { Heart, Star, Users, Coffee } from "lucide-react";
@@ -27,7 +28,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
                     <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
                         <Image
-                            src="/luxury.png"
+                            src="/luxury.jpg"
                             alt="Nuestro proceso"
                             fill
                             className="object-cover"
@@ -88,9 +89,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <footer className="py-12 text-center text-foreground/40 text-sm">
-                © 2024 Marie&apos;s Sutil Detalle. Hecho con ❤️
-            </footer>
+            <Footer />
 
             <WhatsAppButton />
         </main>

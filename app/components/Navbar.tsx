@@ -35,12 +35,12 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
                 {/* Logo */}
                 <Link href="/" className="relative z-[110] transition-transform hover:scale-105 active:scale-95">
-                    <div className="relative h-12 md:h-16 w-12 md:w-16 rounded-full overflow-hidden border-2 border-romantic/20 shadow-lg bg-white">
+                    <div className="relative h-12 md:h-16 w-32 md:w-40">
                         <Image
                             src="/logo.png"
                             alt="Marie's Sutil Detalle"
                             fill
-                            className="object-contain p-1"
+                            className="object-contain"
                             priority
                         />
                     </div>

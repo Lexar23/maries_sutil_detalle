@@ -3,6 +3,7 @@ import Products from "./components/Products";
 import FloatingHearts from "./components/FloatingHearts";
 import WhatsAppButton from "./components/WhatsAppButton";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Image from "next/image";
 import { Heart } from "lucide-react";
 
@@ -49,20 +50,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer id="contact" className="py-16 border-t border-accent/20 text-center relative z-10">
-        <div className="relative w-32 h-16 mx-auto mb-6">
-          <Image
-            src="/logo.jpg"
-            alt="Marie's Logo"
-            fill
-            className="object-contain opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-          />
-        </div>
-        <p className="text-foreground/40 font-medium">
-          © 2024 Marie&apos;s Sutil Detalle. Hecho con ❤️ para San Valentín.
-        </p>
-      </footer>
+      <Footer />
 
       {/* Floating Elements */}
       <WhatsAppButton />

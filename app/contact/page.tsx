@@ -1,5 +1,5 @@
-"use client";
 import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 import FloatingHearts from "@/app/components/FloatingHearts";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
@@ -22,12 +22,12 @@ function ContactForm() {
                     </p>
                     <div className="space-y-6">
                         <div className="flex items-center gap-6 group">
-                            <a href="https://wa.me/50688888888" target="_blank" className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg group-hover:bg-[#25D366] group-hover:text-white transition-all duration-300">
+                            <a href="https://wa.me/50687880937" target="_blank" className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg group-hover:bg-[#25D366] group-hover:text-white transition-all duration-300">
                                 <Phone className="w-6 h-6" />
                             </a>
                             <div>
                                 <p className="text-sm text-foreground/40 font-bold uppercase tracking-wider">WhatsApp Directo</p>
-                                <p className="text-xl font-medium">+506 8888-8888</p>
+                                <p className="text-xl font-medium">+506 8788-0937</p>
                             </div>
                         </div>
 
@@ -37,7 +37,7 @@ function ContactForm() {
                             </div>
                             <div>
                                 <p className="text-sm text-foreground/40 font-bold uppercase tracking-wider">Email</p>
-                                <p className="text-xl font-medium">hola@maries.com</p>
+                                <p className="text-xl font-medium">hola@mariesutil.com</p>
                             </div>
                         </div>
 
@@ -110,9 +110,7 @@ export default function ContactPage() {
                 </Suspense>
             </section>
 
-            <footer className="py-12 text-center text-foreground/40 text-sm">
-                © 2024 Marie&apos;s Sutil Detalle. Hecho con ❤️
-            </footer>
+            <Footer />
 
             <WhatsAppButton />
         </main>

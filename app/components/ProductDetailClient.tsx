@@ -138,26 +138,56 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                         )}
 
                         <div className="glass-card rounded-2xl p-8 mb-10 border-white/40">
-                            <h2 className="text-xl font-bold mb-4">Descripción</h2>
-                            <p className="text-foreground/70 leading-relaxed text-lg">
-                                {product.description} Este detalle ha sido pensado con los más altos estándares de calidad para ofrecerte lo mejor.
-                                Cada pieza es una manifestación de cariño y buen gusto, perfecta para sorprender a esa persona especial en este San Valentín.
+                            <h2 className="text-xl font-bold mb-4">¿Qué incluye esta caja?</h2>
+                            <p className="text-foreground/70 leading-relaxed text-lg mb-6">
+                                Este detalle ha sido pensado con los más altos estándares de calidad.
+                                Cada caja contiene una selección premium:
                             </p>
 
-                            <ul className="mt-8 space-y-4">
-                                <li className="flex items-center gap-3 text-foreground/80 font-medium">
-                                    <CheckCircle2 className="w-5 h-5 text-romantic" />
-                                    Chocolates de Alta Calidad
-                                </li>
-                                <li className="flex items-center gap-3 text-foreground/80 font-medium">
-                                    <CheckCircle2 className="w-5 h-5 text-romantic" />
-                                    Empaque de Lujo Sustentable
-                                </li>
-                                <li className="flex items-center gap-3 text-foreground/80 font-medium">
-                                    <CheckCircle2 className="w-5 h-5 text-romantic" />
-                                    Entrega a Tiempo Garantizada
-                                </li>
+                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {product.ingredients.map((item, idx) => (
+                                    <li key={idx} className="flex items-center gap-4 bg-white/40 p-3 rounded-xl border border-white/60 group hover:bg-romantic/5 transition-all">
+                                        <div className="relative w-12 h-12 rounded-lg overflow-hidden border border-romantic/10 bg-white p-1 shrink-0">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.name}
+                                                fill
+                                                className="object-contain"
+                                            />
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <span className="text-xs text-romantic font-black uppercase tracking-tighter">
+                                                {item.quantity} {item.quantity > 1 ? 'Unidades' : 'Unidad'}
+                                            </span>
+                                            <span className="text-foreground/80 font-bold leading-tight">
+                                                {item.name}
+                                            </span>
+                                        </div>
+                                    </li>
+                                ))}
                             </ul>
+
+                            {/* visual preview of chocolates */}
+                            <div className="mt-10 space-y-4">
+                                <h3 className="text-sm font-black uppercase tracking-widest text-romantic/60">Nuestra Selección de Calidad</h3>
+                                <div className="relative aspect-video rounded-2xl overflow-hidden border-2 border-white shadow-xl">
+                                    <Image
+                                        src="/chocolate_selection.png"
+                                        alt="Selección de chocolates premium Marie's Sutil Detalle"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                </div>
+                                <p className="text-[10px] text-foreground/40 italic text-center">
+                                    * Marcas originales garantizadas en cada una de nuestras entregas.
+                                </p>
+                            </div>
+
+                            <div className="mt-8 pt-6 border-t border-romantic/5 flex items-center gap-3 text-romantic/60 text-sm font-medium">
+                                <CheckCircle2 className="w-4 h-4" />
+                                <span>Presentación de lujo lista para regalar</span>
+                            </div>
                         </div>
 
                         <div className="flex flex-col gap-4">

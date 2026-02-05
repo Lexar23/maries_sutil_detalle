@@ -1,5 +1,5 @@
-"use client";
 import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 import FloatingHearts from "@/app/components/FloatingHearts";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
 import { PlusCircle } from "lucide-react";
@@ -74,9 +74,7 @@ export default function FAQPage() {
                 </div>
             </section>
 
-            <footer className="py-12 text-center text-foreground/40 text-sm">
-                © 2024 Marie&apos;s Sutil Detalle. Hecho con ❤️
-            </footer>
+            <Footer />
 
             <WhatsAppButton />
         </main>
