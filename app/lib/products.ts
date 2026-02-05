@@ -95,12 +95,12 @@ export const products: Product[] = [
     {
         id: "sweet",
         name: "Sweet",
-        price: "₡1.200",
+        price: "₡1.600",
         description: "Un tierno gesto de amor con nuestros mejores chocolates en un formato pequeño pero encantador.",
         category: "Sweet",
         image: "/sweet.jpg",
         ingredients: [
-            { name: "Kiss", quantity: 1, image: ingredientImages["Kiss"] },
+            { name: "Kiss", quantity: 3, image: ingredientImages["Kiss"] },
             { name: "Guayabitas", quantity: 3, image: ingredientImages["Guayabitas"] }
         ],
         colors: [
@@ -111,13 +111,13 @@ export const products: Product[] = [
     {
         id: "heart-box",
         name: "Heart Box",
-        price: "₡1.200",
+        price: "₡1.400",
         description: "La icónica caja en forma de corazón rellena de pura felicidad y los mejores chocolates.",
         category: "Heart",
         image: "/heart.jpg",
         ingredients: [
-            { name: "Kiss", quantity: 1, image: ingredientImages["Kiss"] },
-            { name: "Guayabitas", quantity: 3, image: ingredientImages["Guayabitas"] }
+            { name: "Kiss", quantity: 4, image: ingredientImages["Kiss"] },
+            { name: "Guayabitas", quantity: 1, image: ingredientImages["Guayabitas"] }
         ]
     }
 ];
