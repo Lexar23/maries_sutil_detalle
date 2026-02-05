@@ -10,7 +10,7 @@ export default function FAQPage() {
     const faqs = [
         {
             q: "¿Hacen envíos a todo el país?",
-            a: "Sí, realizamos envíos seguros y refrigerados a todas las provincias de Costa Rica. El tiempo de entrega oscila entre 24 y 48 horas."
+            a: "Sí, realizamos envíos seguros a todas las provincias de Costa Rica. El tiempo de entrega oscila entre 24 y 48 horas."
         },
         {
             q: "¿Puedo personalizar el mensaje dentro de la caja?",

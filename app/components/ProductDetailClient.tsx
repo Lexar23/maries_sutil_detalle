@@ -167,22 +167,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                                 ))}
                             </ul>
 
-                            {/* visual preview of chocolates */}
-                            <div className="mt-10 space-y-4">
-                                <h3 className="text-sm font-black uppercase tracking-widest text-romantic/60">Nuestra Selección de Calidad</h3>
-                                <div className="relative aspect-video rounded-2xl overflow-hidden border-2 border-white shadow-xl">
-                                    <Image
-                                        src="/chocolate_selection.png"
-                                        alt="Selección de chocolates premium Marie's Sutil Detalle"
-                                        fill
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                                </div>
-                                <p className="text-[10px] text-foreground/40 italic text-center">
-                                    * Marcas originales garantizadas en cada una de nuestras entregas.
-                                </p>
-                            </div>
+
 
                             <div className="mt-8 pt-6 border-t border-romantic/5 flex items-center gap-3 text-romantic/60 text-sm font-medium">
                                 <CheckCircle2 className="w-4 h-4" />
