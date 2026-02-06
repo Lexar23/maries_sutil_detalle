@@ -23,7 +23,8 @@ const ingredientImages = {
     "Nugget Hershey's": "/chocolates/nugget.jpg",
     "Mini Hershey's": "/chocolates/mini1.png",
     "Kiss": "/chocolates/kiss1.png",
-    "Guayabitas": "/chocolates/guayabita.png"
+    "Guayabitas": "/chocolates/guayabita.png",
+    "Tutto": "/chocolates/Tutto.webp"
 };
 
 export const products: Product[] = [
@@ -66,10 +67,10 @@ export const products: Product[] = [
         category: "Silver",
         image: "/silverPack.jpg",
         ingredients: [
-            { name: " Copper Kettle Truffles Dark", quantity: 1, image: ingredientImages["Copper Kettle Truffles Dark"] },
+            { name: "Copper Kettle Truffles Dark", quantity: 1, image: ingredientImages["Copper Kettle Truffles Dark"] },
+            { name: "Tutto", quantity: 2, image: ingredientImages["Tutto"] },
             { name: "Nugget Hershey's", quantity: 2, image: ingredientImages["Nugget Hershey's"] },
-            { name: "Mini Hershey's", quantity: 2, image: ingredientImages["Mini Hershey's"] },
-            { name: "Kiss", quantity: 3, image: ingredientImages["Kiss"] }
+            { name: "Mini Hershey's", quantity: 3, image: ingredientImages["Mini Hershey's"] }
         ],
         colors: [
             { name: "Rosa", image: "/silverBlossomRosa.jpg" },
@@ -85,23 +86,23 @@ export const products: Product[] = [
         category: "Sweet",
         image: "/love.jpg",
         ingredients: [
-            { name: "Copper Kettle Truffles Dark", quantity: 1, image: ingredientImages["Copper Kettle Truffles Dark"] },
+            { name: "Tutto", quantity: 2, image: ingredientImages["Tutto"] },
             { name: "Nugget Hershey's", quantity: 2, image: ingredientImages["Nugget Hershey's"] },
             { name: "Mini Hershey's", quantity: 2, image: ingredientImages["Mini Hershey's"] },
-            { name: "Kiss", quantity: 2, image: ingredientImages["Kiss"] },
-            { name: "Guayabitas", quantity: 2, image: ingredientImages["Guayabitas"] }
+            { name: "Kiss", quantity: 2, image: ingredientImages["Kiss"] }
         ]
     },
     {
         id: "sweet",
         name: "Sweet",
-        price: "₡1.600",
+        price: "₡1.650",
         description: "Un tierno gesto de amor con nuestros mejores chocolates en un formato pequeño pero encantador.",
         category: "Sweet",
         image: "/sweet.jpg",
         ingredients: [
+            { name: "Mini Hershey's", quantity: 2, image: ingredientImages["Mini Hershey's"] },
             { name: "Kiss", quantity: 3, image: ingredientImages["Kiss"] },
-            { name: "Guayabitas", quantity: 3, image: ingredientImages["Guayabitas"] }
+            { name: "Guayabitas", quantity: 2, image: ingredientImages["Guayabitas"] }
         ],
         colors: [
             { name: "Rosa", image: "/heartRosa.jpg" },
@@ -117,7 +118,7 @@ export const products: Product[] = [
         image: "/heart.jpg",
         ingredients: [
             { name: "Kiss", quantity: 4, image: ingredientImages["Kiss"] },
-            { name: "Guayabitas", quantity: 1, image: ingredientImages["Guayabitas"] }
+            { name: "Guayabitas", quantity: 2, image: ingredientImages["Guayabitas"] }
         ]
     }
 ];

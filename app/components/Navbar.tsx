@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Heart } from "lucide-react";
+import { Menu, X, Heart, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
@@ -24,6 +24,8 @@ const Navbar = () => {
         { name: "FAQ", href: "/faq" },
         { name: "Contacto", href: "/contact" },
     ];
+
+    const instagramLink = "https://www.instagram.com/maries_sutil_detalle?igsh=OXd1bGu4YW5rYXI3";
 
     return (
         <header
@@ -58,6 +60,17 @@ const Navbar = () => {
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-romantic transition-all duration-300 group-hover:w-full" />
                         </Link>
                     ))}
+
+                    <a
+                        href={instagramLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-foreground hover:text-romantic transition-colors"
+                        aria-label="Instagram"
+                    >
+                        <Instagram size={20} />
+                    </a>
+
                     <Link
                         href="/#catalog"
                         className="bg-romantic text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest shadow-lg shadow-romantic/20 hover:bg-romantic/90 hover:-translate-y-0.5 transition-all"
@@ -66,14 +79,25 @@ const Navbar = () => {
                     </Link>
                 </nav>
 
-                {/* Mobile Toggle */}
-                <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="md:hidden relative z-[110] p-3 text-romantic bg-white rounded-2xl shadow-lg border border-romantic/10"
-                    aria-label="Menu"
-                >
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+                {/* Mobile Actions */}
+                <div className="md:hidden flex items-center gap-3 relative z-[110]">
+                    <a
+                        href={instagramLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 text-romantic bg-white rounded-2xl shadow-lg border border-romantic/10 transition-transform active:scale-95"
+                        aria-label="Instagram"
+                    >
+                        <Instagram size={24} />
+                    </a>
+                    <button
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        className="p-3 text-romantic bg-white rounded-2xl shadow-lg border border-romantic/10 transition-transform active:scale-95"
+                        aria-label="Menu"
+                    >
+                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Menu Overlay */}
