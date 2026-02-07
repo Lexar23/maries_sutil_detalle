@@ -87,7 +87,7 @@ const Products = () => {
                                     Detalles
                                 </Link>
                                 <Link
-                                    href={`https://wa.me/50687880937?text=${encodeURIComponent(`Hola! Quiero pedir la caja: ${product.name}`)}`}
+                                    href={`https://wa.me/50670682440?text=${encodeURIComponent(`Hola! Quiero pedir la caja: ${product.name}`)}`}
                                     target="_blank"
                                     className="bg-romantic text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-romantic/90 transition-all shadow-lg shadow-romantic/20 text-sm"
                                 >
