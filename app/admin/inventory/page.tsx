@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useProducts } from '../../hooks/useProducts';
-import { Product, NewProduct } from '../../interfaces/product';
+import { Product, NewProduct, AVAILABLE_CHOCOLATES } from '../../interfaces/product';
 import ProductModal from '../components/ProductModal';
 import { Plus, Edit2, Trash2, Search, AlertCircle, Database } from 'lucide-react';
 import Image from 'next/image';
@@ -117,11 +117,15 @@ export default function InventoryPage() {
 
           for (const p of staticProducts) {
             const parsedPrice = parseInt(p.tiers[0]?.price.replace(/[^0-9]/g, '') || '0') || 0;
-            const contents = p.tiers[0]?.ingredients?.map((ing) => ({
-              name: ing.name,
-              quantity: ing.quantity,
-              image: ing.image,
-            })) || [];
+            const contents = p.tiers[0]?.ingredients?.map((ing) => {
+              const masterData = AVAILABLE_CHOCOLATES.find(c => c.name === ing.name);
+              return {
+                name: ing.name,
+                quantity: ing.quantity,
+                image: ing.image,
+                unit_price: masterData?.unit_price || 0
+              };
+            }) || [];
 
             const result = await addProduct({
               name: p.name,
