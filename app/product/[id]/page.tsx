@@ -15,13 +15,16 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-    const { id } = await params;
-    const { data: product } = await supabase
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+    const { id } = params;
+
+    const { data: productFromDb } = await supabase
         .from('products')
         .select('*')
         .eq('slug', id)
         .single();
+
+    const product = productFromDb || staticProducts.find((p) => p.id === id);
 
     if (!product) return {};
 
@@ -29,37 +32,42 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         title: product.name,
         description: product.description,
         openGraph: {
-            images: [{ url: product.image_url || '/logo.png' }],
+            images: [{ url: 'image_url' in product && product.image_url ? product.image_url : '/logo.png' }],
         },
     };
 }
 
-export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = await params;
-    
-    // Attempt to get product from DB
-    const { data: product } = await supabase
+export default async function ProductPage({ params }: { params: { id: string } }) {
+    const { id } = params;
+
+    const { data: productFromDb } = await supabase
         .from('products')
         .select('*')
         .eq('slug', id)
         .single();
 
+    const product = productFromDb || staticProducts.find((p) => p.id === id);
+
     if (!product) {
         notFound();
     }
 
-    // Convert DBProduct to the interface ProductDetailClient expects (Legacy compatibility)
-    // In a full transition, ProductDetailClient should also be refactored to use DBProduct
+    // Convert DBProduct or fallback staticProduct to a product shape for ProductDetailClient.
+    const isDbProduct = 'price' in product && typeof product.price === 'number';
+    const priceNumber = isDbProduct
+        ? product.price
+        : parseInt(product.tiers?.[0]?.price.replace(/[^0-9]/g, '') || '0', 10);
+
     const adaptedProduct = {
         id: product.id,
         name: product.name,
         description: product.description,
-        categoryId: product.category,
-        image: product.image_url || "/logo.png",
-        tiers: [
+        categoryId: 'category' in product ? product.category : product.categoryId,
+        image: 'image_url' in product ? product.image_url || "/logo.png" : product.image || "/logo.png",
+        tiers: 'tiers' in product ? product.tiers : [
             {
                 type: "Base",
-                price: `₡${product.price.toLocaleString('es-CR')}`,
+                price: `₡${priceNumber.toLocaleString('es-CR')}`,
                 ingredients: []
             }
         ]
@@ -69,11 +77,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         "@context": "https://schema.org",
         "@type": "Product",
         name: product.name,
-        image: product.image_url,
+        image: 'image_url' in product ? product.image_url : product.image,
         description: product.description,
         offers: {
             "@type": "Offer",
-            price: product.price,
+            price: priceNumber,
             priceCurrency: "CRC",
             availability: "https://schema.org/InStock",
         },
