@@ -1,9 +1,10 @@
 import { supabase } from "@/app/lib/supabaseClient";
 import { notFound } from "next/navigation";
-import ProductDetailClient from "@/app/components/ProductDetailClient";
+import ProductDetailPageClient from "@/app/components/ProductDetailPageClient";
 import { Metadata } from "next";
 import { Product as DBProduct } from "@/app/interfaces/product";
 import { products as staticProducts, Product as StaticProduct } from "@/app/lib/products";
+import ProductDetailClient from "@/app/components/ProductDetailClient";
 
 // Revalidate every 10 minutes to keep it relatively fresh
 export const revalidate = 600;
@@ -48,8 +49,8 @@ export async function generateStaticParams() {
     return unique.length > 0 ? unique : staticParam;
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-    const { id } = params;
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const { id } = await params;
     const product = await getProductBySlug(id);
 
     if (!product) return {};
@@ -63,15 +64,20 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     };
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-    const { id } = params;
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     const product = await getProductBySlug(id);
 
     if (!product) {
         notFound();
     }
 
-    // Convert DBProduct or fallback staticProduct to a product shape for ProductDetailClient.
+    // DB product: use new rich component
+    if ('price' in product && typeof product.price === 'number') {
+        return <ProductDetailPageClient product={product as DBProduct} />;
+    }
+
+    // Fallback static product: use legacy adapter
     const isDbProduct = 'price' in product && typeof product.price === 'number';
     const sourceTiers = 'tiers' in product ? product.tiers : [];
     const priceNumber = isDbProduct
@@ -117,3 +123,4 @@ export default async function ProductPage({ params }: { params: { id: string } }
         </>
     );
 }
+
