@@ -3,14 +3,36 @@ import { notFound } from "next/navigation";
 import ProductDetailClient from "@/app/components/ProductDetailClient";
 import { Metadata } from "next";
 import { Product as DBProduct } from "@/app/interfaces/product";
-import { products as staticProducts } from "@/app/lib/products";
+import { products as staticProducts, Product as StaticProduct } from "@/app/lib/products";
 
 // Revalidate every 10 minutes to keep it relatively fresh
 export const revalidate = 600;
 
+async function getProductBySlug(id: string): Promise<DBProduct | StaticProduct | null> {
+    if (!id) {
+        return null;
+    }
+
+    const { data: productFromDb, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('slug', id)
+        .maybeSingle();
+
+    if (error && !productFromDb) {
+        console.warn(`Supabase lookup falló para el producto '${id}':`, error.message || error);
+    }
+
+    if (productFromDb) {
+        return productFromDb as DBProduct;
+    }
+
+    const fallbackProduct = staticProducts.find((p) => p.id === id);
+    return fallbackProduct || null;
+}
+
 export async function generateStaticParams() {
-    // from DB (preferred) + fallback to static local list
-    const { data: dbProducts, error } = await supabase
+    const { data: dbProducts } = await supabase
         .from('products')
         .select('slug');
 
@@ -23,24 +45,12 @@ export async function generateStaticParams() {
     const combined = [...dbParam, ...staticParam];
     const unique = Array.from(new Map(combined.map((p) => [p.id, p])).values());
 
-    if (unique.length === 0) {
-        // very fallback for safety
-        return staticParam;
-    }
-
-    return unique;
+    return unique.length > 0 ? unique : staticParam;
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
     const { id } = params;
-
-    const { data: productFromDb } = await supabase
-        .from('products')
-        .select('*')
-        .eq('slug', id)
-        .single();
-
-    const product = productFromDb || staticProducts.find((p) => p.id === id);
+    const product = await getProductBySlug(id);
 
     if (!product) return {};
 
@@ -55,14 +65,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
 export default async function ProductPage({ params }: { params: { id: string } }) {
     const { id } = params;
-
-    const { data: productFromDb } = await supabase
-        .from('products')
-        .select('*')
-        .eq('slug', id)
-        .single();
-
-    const product = productFromDb || staticProducts.find((p) => p.id === id);
+    const product = await getProductBySlug(id);
 
     if (!product) {
         notFound();
@@ -70,9 +73,10 @@ export default async function ProductPage({ params }: { params: { id: string } }
 
     // Convert DBProduct or fallback staticProduct to a product shape for ProductDetailClient.
     const isDbProduct = 'price' in product && typeof product.price === 'number';
+    const sourceTiers = 'tiers' in product ? product.tiers : [];
     const priceNumber = isDbProduct
         ? product.price
-        : parseInt(product.tiers?.[0]?.price.replace(/[^0-9]/g, '') || '0', 10);
+        : parseInt(sourceTiers?.[0]?.price.replace(/[^0-9]/g, '') || '0', 10);
 
     const adaptedProduct = {
         id: product.id,
