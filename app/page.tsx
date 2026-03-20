@@ -1,18 +1,14 @@
 import Hero from "./components/Hero";
 import Products from "./components/Products";
-import FloatingHearts from "./components/FloatingHearts";
 import WhatsAppButton from "./components/WhatsAppButton";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Image from "next/image";
-import { Heart } from "lucide-react";
+import { Star } from "lucide-react";
 
 export default function Home() {
   return (
     <main className="relative min-h-screen">
       <Navbar />
-      {/* Background Animation */}
-      <FloatingHearts />
 
       {/* Hero Section */}
       <Hero />
@@ -27,21 +23,21 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
               <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Heart className="text-romantic fill-romantic" />
+                <Star className="text-accent fill-accent" />
               </div>
               <h3 className="text-xl font-bold mb-2">Selección Especial</h3>
               <p className="text-foreground/60">Seleccionamos los mejores chocolates para crear el regalo perfecto.</p>
             </div>
             <div>
               <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Heart className="text-romantic fill-romantic" />
+                <Star className="text-accent fill-accent" />
               </div>
               <h3 className="text-xl font-bold mb-2">Envío Especial</h3>
               <p className="text-foreground/60">Llegamos a tiempo para que tu sorpresa sea perfecta.</p>
             </div>
             <div>
               <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Heart className="text-romantic fill-romantic" />
+                <Star className="text-accent fill-accent" />
               </div>
               <h3 className="text-xl font-bold mb-2">Empaque Élite</h3>
               <p className="text-foreground/60">Cada caja es una obra de arte lista para regalar.</p>
@@ -57,4 +53,5 @@ export default function Home() {
     </main>
   );
 }
+
 

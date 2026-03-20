@@ -42,6 +42,9 @@ export const metadata: Metadata = {
   },
 };
 
+import { CartProvider } from "./context/CartContext";
+import { ProductProvider } from "./context/ProductContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,7 +55,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} antialiased font-sans`}
       >
-        {children}
+        <ProductProvider>
+          <CartProvider>
+            {children}
+          </CartProvider>
+        </ProductProvider>
       </body>
     </html>
   );

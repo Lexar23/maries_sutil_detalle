@@ -1,7 +1,6 @@
 "use client";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
-import FloatingHearts from "@/app/components/FloatingHearts";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
 import { PlusCircle } from "lucide-react";
 import { motion } from "framer-motion";
@@ -33,7 +32,6 @@ export default function FAQPage() {
     return (
         <main className="relative min-h-screen bg-background text-foreground">
             <Navbar />
-            <FloatingHearts />
 
             <section className="relative z-10 pt-32 pb-24 px-6 md:px-20 max-w-4xl mx-auto">
                 <motion.div

@@ -1,7 +1,6 @@
 "use client";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
-import FloatingHearts from "@/app/components/FloatingHearts";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
@@ -19,7 +18,7 @@ function ContactForm() {
                 <div className="glass-card rounded-3xl p-10 space-y-10">
                     <h2 className="text-3xl font-bold font-playfair">Información de Pedidos</h2>
                     <p className="text-foreground/60 italic">
-                        "Todos nuestros pedidos se coordinan de forma personalizada por WhatsApp o mediante este formulario para asegurar que cada detalle sea perfecto."
+                        &quot;Todos nuestros pedidos se coordinan de forma personalizada por WhatsApp o mediante este formulario para asegurar que cada detalle sea perfecto.&quot;
                     </p>
                     <div className="space-y-6">
                         <div className="flex items-center gap-6 group">
@@ -92,7 +91,6 @@ export default function ContactPage() {
     return (
         <main className="relative min-h-screen bg-background text-foreground">
             <Navbar />
-            <FloatingHearts />
 
             <section className="relative z-10 pt-32 pb-24 px-6 md:px-20 max-w-7xl mx-auto">
                 <motion.div

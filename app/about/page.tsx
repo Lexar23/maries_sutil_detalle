@@ -1,9 +1,8 @@
 "use client";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
-import FloatingHearts from "@/app/components/FloatingHearts";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
-import { Heart, Star, Users, Coffee } from "lucide-react";
+import { Star, Users, Coffee } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -11,7 +10,6 @@ export default function AboutPage() {
     return (
         <main className="relative min-h-screen bg-background text-foreground">
             <Navbar />
-            <FloatingHearts />
 
             <section className="relative z-10 pt-32 pb-24 px-6 md:px-20 max-w-7xl mx-auto">
                 <motion.div
@@ -28,7 +26,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
                     <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
                         <Image
-                            src="/luxury.jpg"
+                            src="/amor/luxury.jpg"
                             alt="Nuestro proceso"
                             fill
                             className="object-cover"
