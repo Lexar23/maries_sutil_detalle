@@ -9,10 +9,26 @@ import { products as staticProducts } from "@/app/lib/products";
 export const revalidate = 600;
 
 export async function generateStaticParams() {
-    // Fallback to static products for build time params
-    return staticProducts.map((product) => ({
-        id: product.id,
-    }));
+    // from DB (preferred) + fallback to static local list
+    const { data: dbProducts, error } = await supabase
+        .from('products')
+        .select('slug');
+
+    const dbParam = Array.isArray(dbProducts)
+        ? dbProducts.map((p) => ({ id: p.slug || '' })).filter((p) => p.id)
+        : [];
+
+    const staticParam = staticProducts.map((product) => ({ id: product.id }));
+
+    const combined = [...dbParam, ...staticParam];
+    const unique = Array.from(new Map(combined.map((p) => [p.id, p])).values());
+
+    if (unique.length === 0) {
+        // very fallback for safety
+        return staticParam;
+    }
+
+    return unique;
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
