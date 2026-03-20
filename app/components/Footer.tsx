@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, MessageCircle, MapPin, Phone, Star } from "lucide-react";
+import { Instagram, MessageCircle, MapPin, Phone, Star, Mail } from "lucide-react";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -74,19 +74,15 @@ const Footer = () => {
                                 <MapPin size={14} className="text-accent shrink-0" />
                                 <span className="text-foreground/60 text-xs font-bold">San José, Costa Rica</span>
                             </li>
-<<<<<<< HEAD
-                            <li className="flex items-center gap-3">
-                                <Phone size={18} className="text-romantic shrink-0" />
-                                <Link href="https://wa.me/50670682440" target="_blank"><span className="text-foreground/60 text-sm">+506 7068 2440</span></Link>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <Mail size={18} className="text-romantic shrink-0" />
-                                <span className="text-foreground/60 text-sm">mariessutildetalle@gmail.com</span>
-=======
                             <li className="flex items-center gap-2">
                                 <Phone size={14} className="text-accent shrink-0" />
-                                <span className="text-foreground/60 text-xs font-bold">+506 7068 2440</span>
->>>>>>> 5082b54 (feat: Implement full e-commerce functionality including an admin panel for product and order management, a shopping cart with a drawer, and integrate Supabase for data persistence.)
+                                <Link href="https://wa.me/50670682440" target="_blank">
+                                    <span className="text-foreground/60 text-xs font-bold">+506 7068 2440</span>
+                                </Link>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Mail size={14} className="text-accent shrink-0" />
+                                <span className="text-foreground/60 text-xs font-bold">mariessutildetalle@gmail.com</span>
                             </li>
                         </ul>
                     </div>
