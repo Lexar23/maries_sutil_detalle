@@ -129,13 +129,6 @@ export default function ProductDetailPageClient({ product }: ProductDetailPageCl
             <div className="space-y-2">
               <span className="text-[10px] font-bold uppercase tracking-widest text-foreground/50">Precio</span>
               <p className="text-4xl font-black text-accent">₡{activePrice?.toLocaleString('es-CR')}</p>
-              {variantToDisplay && variantToDisplay.cost_box > 0 && (
-                <div className="text-xs text-foreground/50 space-y-0.5 pt-2 border-t border-white/20">
-                  <p>Desglose aproximado:</p>
-                  <p>• Caja: ₡{variantToDisplay.cost_box?.toLocaleString('es-CR')}</p>
-                  <p>• Mano de obra: ₡{variantToDisplay.cost_labor?.toLocaleString('es-CR')}</p>
-                </div>
-              )}
             </div>
 
             {/* Contents Section */}
